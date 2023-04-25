@@ -12,10 +12,5 @@ Hacer dos funciones
 
 """
 
-def remove_mean(data):
-    return data-data.mean()    
-
-def add_number(data,number):
-    return data+number
 
 
