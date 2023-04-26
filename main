@@ -11,6 +11,8 @@ import ccxt.async_support as ccxta
 import time
 import numpy as np
 import pandas as pd
+import json
+import plotly.express as px
 
 
 async def async_client(exchange_id, run_time: int, symbol: str):
@@ -38,11 +40,11 @@ async def async_client(exchange_id, run_time: int, symbol: str):
             bid_vwap=0
             for ask in orderbook['asks']:
                 price=ask[0]
-                volume=ask[0]
+                volume=ask[1]
                 ask_vwap+=price*volume/ask_volume
             for bid in orderbook['asks']:
                 price=bid[0]
-                volume=bid[0]
+                volume=bid[1]
                 bid_vwap+=price*volume/bid_volume
             vwap=(ask_vwap*ask_volume+bid_vwap*bid_volume)/total_vol
 
@@ -86,7 +88,7 @@ async def multi_orderbooks(exchanges, run_time: int, symbol: str):
 
 if __name__ == "__main__":
      exchanges = ["kraken", "bittrex", "bitfinex"]
-     run_time = 60*30  # seconds
+     run_time = 15  # seconds
      symbol = "ETH/BTC"
 
      data = asyncio.run(multi_orderbooks(exchanges, run_time=run_time, symbol=symbol))
@@ -95,6 +97,29 @@ if __name__ == "__main__":
 
      print(data.head())
 
-     #obtener mi data en JSON
-     json_data=data.to_json(orient='records')
+#Convertir la data a JSON
+json_data=data.to.to_json(orient='records')
+
+with open('datos.json') as f:
+    data2=json.load(f)
+df = pd.DataFrame.from_dict(data2)
+
+#Crear visualización 
+fig = px.line(df,x='timeStamp', y='mid_price', color='exchange',facet_col='Level',facet_col_wrap=2)
+fig= px.line(df,x='timeStamp',y='mid_price',color='exchange')
+fig.show()
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
