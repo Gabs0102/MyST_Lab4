@@ -30,4 +30,4 @@ exchanges = ["bitforex", "huobipro", "bitmart"]
 run_time = 20  # seconds
 symbol = "ETH/BTC"
 df = orderbooks(exchanges,run_time,symbol)
-graficos(df)
+#graficos(df)

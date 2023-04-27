@@ -21,7 +21,6 @@ async def async_client(exchange_id, run_time: int, symbol: str):
     time_f = 0
     ob = []
     while time_f <= run_time:
-        print(time_f)
         try:
             await exchange.load_markets()
             market = exchange.market(symbol)
@@ -46,7 +45,7 @@ async def async_client(exchange_id, run_time: int, symbol: str):
                 volume=bid[1]
                 bid_vwap+=price*volume/bid_volume
             vwap=(ask_vwap*ask_volume+bid_vwap*bid_volume)/total_vol
-
+            #spread = np.round(ask-bid,10)
            #datos ohlc 
             open_price=ohlc[-1][1]
             high_price=max([row[2] for row in ohlc])
@@ -63,9 +62,10 @@ async def async_client(exchange_id, run_time: int, symbol: str):
                     "bid_volume": bid_volume,
                     "total_vol":total_vol,
                     "mid_price":mid_price,
-                    "vwap":vwap
-                    },
-                
+                    "vwap":vwap,
+                    "close_price": close_price,
+                    #"spread":spread,
+                    }
             )
             # End time
             time_2 = time.time()
