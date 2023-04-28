@@ -66,7 +66,6 @@ async def async_client(exchange_id, run_time: int, symbol: str):
                     "total_vol":total_vol,
                     "mid_price":mid_price,
                     "vwap":vwap,
-<<<<<<< HEAD
                     "close_price": close_price,
                     "spread":spread,
                     "effective_spread":effective_spread,
