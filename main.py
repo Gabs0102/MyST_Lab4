@@ -27,10 +27,10 @@ def orderbooks(exchanges,run_time,symbol):
 
 
 exchanges = ["bitforex", "ftx", "kraken"]
-run_time = 10  # seconds se pone mas tiempo 
+run_time = 20  # seconds poner mas tiempo 
 symbol = "ETH/BTC"
 df = orderbooks(exchanges,run_time,symbol)
 print(df)
-#df.to_csv(r'files\orderbooks_27abr.csv') # Se comenta todo cuando hayas descargado los datos  
+#df.to_csv(r'files\orderbooks_27abr.csv') # Se comenta todo cuando se haya descargado los datos  
                                          # Se llaman los csv por aparte
 # df.to_csv(r'files\orderbooks_27_2abr.csv')
