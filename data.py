@@ -63,8 +63,7 @@ async def async_client(exchange_id, run_time: int, symbol: str):
                     "total_vol":total_vol,
                     "mid_price":mid_price,
                     "vwap":vwap,
-                    "close_price": close_price,
-                    #"spread":spread,
+                    "close_price": close_price, # graficas(df.drop(["close_price"]),"ETH/BTC") #Jupyter
                     }
             )
             # End time

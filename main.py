@@ -8,7 +8,7 @@ import pandas as pd
 import data
 from data import multi_orderbooks
 import asyncio
-from visualizations import graficos
+from visualizations import graficas
 
 def orderbooks(exchanges,run_time,symbol):
      data = asyncio.run(multi_orderbooks(exchanges, run_time=run_time, symbol=symbol))
@@ -26,8 +26,11 @@ def orderbooks(exchanges,run_time,symbol):
 # df = pd.DataFrame.from_dict(data2)
 
 
-exchanges = ["bitforex", "huobipro", "bitmart"]
-run_time = 20  # seconds
+exchanges = ["bitforex", "ftx", "kraken"]
+run_time = 10  # seconds se pone mas tiempo 
 symbol = "ETH/BTC"
 df = orderbooks(exchanges,run_time,symbol)
-#graficos(df)
+print(df)
+#df.to_csv(r'files\orderbooks_27abr.csv') # Se comenta todo cuando hayas descargado los datos  
+                                         # Se llaman los csv por aparte
+# df.to_csv(r'files\orderbooks_27_2abr.csv')
