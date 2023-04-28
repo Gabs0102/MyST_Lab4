@@ -69,7 +69,7 @@ async def async_client(exchange_id, run_time: int, symbol: str):
                     "close_price": close_price,
                     "spread":spread,
                     "effective_spread":effective_spread,
-            )
+            })
             # End time
             time_2 = time.time()
             time_f = round(time_2 - time_1, 4)
