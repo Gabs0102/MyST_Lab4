@@ -9,6 +9,7 @@ import data
 from data import multi_orderbooks
 import asyncio
 from visualizations import graficos
+import numpy as np
 
 def orderbooks(exchanges,run_time,symbol):
      data = asyncio.run(multi_orderbooks(exchanges, run_time=run_time, symbol=symbol))
@@ -27,7 +28,9 @@ def orderbooks(exchanges,run_time,symbol):
 
 
 exchanges = ["bitforex", "huobipro", "bitmart"]
-run_time = 20  # seconds
+run_time = 5*60  # seconds
 symbol = "ETH/BTC"
 df = orderbooks(exchanges,run_time,symbol)
 #graficos(df)
+
+

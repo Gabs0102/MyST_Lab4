@@ -45,13 +45,16 @@ async def async_client(exchange_id, run_time: int, symbol: str):
                 volume=bid[1]
                 bid_vwap+=price*volume/bid_volume
             vwap=(ask_vwap*ask_volume+bid_vwap*bid_volume)/total_vol
-            #spread = np.round(ask-bid,10)
+            spread = ask_price-bid_price
            #datos ohlc 
             open_price=ohlc[-1][1]
             high_price=max([row[2] for row in ohlc])
             low_price=min([row[3] for row in ohlc])
             close_price=ohlc[-1][4]
-
+            delta_p=np.diff([row[4]for row in ohlc], prepend=open_price)
+            delta_p_l=np.roll(delta_p,60)
+            cov=np.cov([delta_p,delta_p_l])[0][1]
+            effective_spread=abs(spread)+abs(cov)
             # Final data format for the results
             ob.append(
                 {
@@ -64,7 +67,8 @@ async def async_client(exchange_id, run_time: int, symbol: str):
                     "mid_price":mid_price,
                     "vwap":vwap,
                     "close_price": close_price,
-                    #"spread":spread,
+                    "spread":spread,
+                    "effective_spread":effective_spread,
                     }
             )
             # End time
