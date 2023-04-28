@@ -27,6 +27,7 @@ def orderbooks(exchanges,run_time,symbol):
 # df = pd.DataFrame.from_dict(data2)
 
 
+
 exchanges = ["bitforex", "huobipro", "bitmart"]
 run_time = 5*60  # seconds
 symbol = "ETH/BTC"
