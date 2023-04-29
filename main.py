@@ -11,14 +11,14 @@ import asyncio
 from visualizations import graficos
 import numpy as np
 
-async def orderbooks(exchanges,run_time,symbol):
-     data = await multi_orderbooks(exchanges, run_time=run_time, symbol=symbol)
+def orderbooks(exchanges,run_time,symbol):
+     data = asyncio.run(multi_orderbooks(exchanges, run_time=run_time, symbol=symbol))
      data = [item for sublist in data for item in sublist]
      data = pd.DataFrame(data)
      a1= data.loc[:,['exchange', 'timeStamp','Level','ask_volume','bid_volume','total_vol','mid_price','vwap']]
-     print(a1.head())
+     # print(a1.head())
      a2= data.loc[:,['timeStamp','close_price','spread','effective_spread']]
-     print(a2.head())
+     # print(a2.head())
      return(data)
 
 #Convertir la data a JSON
@@ -30,10 +30,12 @@ async def orderbooks(exchanges,run_time,symbol):
 
 
 
-exchanges = ["bitforex", "huobipro", "bitmart"]
-run_time = 60*60  # seconds
+exchanges = ["bitforex",'bitmex','bitfinex']
+run_time = 60*30 # seconds
 symbol = "ETH/BTC"
-df = asyncio.run(orderbooks(exchanges,run_time,symbol))
+df = (orderbooks(exchanges,run_time,symbol))
+df.to_csv(r'files/orderbooks_27abr.csv')
+# print(df)
+# print(df.info())
 
-
-graficos(df)
+# graficos(df)

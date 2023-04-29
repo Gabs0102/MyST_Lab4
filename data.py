@@ -21,6 +21,7 @@ async def async_client(exchange_id, run_time: int, symbol: str):
     time_f = 0
     ob = []
     while time_f <= run_time:
+        print(time_f)
         try:
             await exchange.load_markets()
             market = exchange.market(symbol)
