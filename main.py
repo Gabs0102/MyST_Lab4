@@ -31,10 +31,10 @@ def orderbooks(exchanges,run_time,symbol):
 
 
 exchanges = ["bitforex",'bitmex','bitfinex']
-run_time = 60*30 # seconds
+run_time = 60*60 # seconds
 symbol = "ETH/BTC"
 df = (orderbooks(exchanges,run_time,symbol))
-df.to_csv(r'files/orderbooks_27abr.csv')
+df.to_csv(r'files/orderbooks_29abr.csv')
 # print(df)
 # print(df.info())
 
